@@ -3,14 +3,17 @@ import Home from './pages/Home';
 import DriverDashboard from './pages/DriverDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Homepage from './pages/Homepage';
+import './styles.css'; // Importing the CSS file
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/driver-dashboard" element={<DriverDashboard />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/" element={<Homepage />} />
       </Routes>
     </BrowserRouter>
   );
