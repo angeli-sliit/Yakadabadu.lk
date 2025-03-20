@@ -1,14 +1,42 @@
-import React from 'react';
+// frontend/src/pages/Home.jsx
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const driverName = localStorage.getItem('driverName');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-light min-vh-100 d-flex flex-column">
       <Navbar />
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold text-center text-blue-600">Welcome to Yakadabadu.lk</h1>
-        <p className="text-center text-gray-700">Efficient driver and route management system.</p>
+      <div className="container flex-grow-1 py-5">
+        <h1 className="text-center text-primary fw-bold mb-3">
+          Welcome {driverName || 'Driver'}!
+        </h1>
+        
+        <div className="d-flex justify-content-center gap-3 mt-4">
+          <button
+            onClick={() => navigate('/driver-dashboard')}
+            className="btn btn-success px-4 py-2"
+          >
+            Today's Pickup
+          </button>
+          <button
+            onClick={() => navigate('/driver-profile')}
+            className="btn btn-primary px-4 py-2"
+          >
+            User Profile
+          </button>
+        </div>
       </div>
       <Footer />
     </div>
