@@ -6,6 +6,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import DriverProfile from './pages/DriverProfile';
 import Login from './pages/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Homepage from './pages/Homepage';
+import './styles.css'; // Importing the CSS file
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -16,6 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Login />} />
         <Route path="/home" element={
           <ProtectedRoute>
@@ -37,6 +40,10 @@ function App() {
             <DriverProfile />
           </ProtectedRoute>
         } />
+        <Route path="/home" element={<Home />} />
+        <Route path="/driver-dashboard" element={<DriverDashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/" element={<Homepage />} />
       </Routes>
     </BrowserRouter>
   );
